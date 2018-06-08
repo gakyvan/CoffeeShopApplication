@@ -29,10 +29,11 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<a th:href="@{/person/addPersonForm}" class="btn btn-success"><i
+				<a th:href="@{/user/add}" class="btn btn-success"><i
 					class="fa fa-plus"></i> Person</a>
 			</div>
 			<div class="panel-body">
+			<div class="alert alert-success" th:if="${message!=null}" th:text="${message}"></div>
 				<table class="table">
 					<tr>
 						<th>#No</th>

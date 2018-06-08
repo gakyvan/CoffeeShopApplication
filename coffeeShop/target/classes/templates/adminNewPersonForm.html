@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Coffee Shop</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#"><img th:src="@{/img/iconShop.png}" width="200px"
+						height="50px" /></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a th:href="@{/product/all}">Products</a></li>
+					<li><a href="#">Orders</a></li>
+					<li><a th:href="@{/person/all}">Persons</a></li>
+
+				</ul>
+				<button class="btn btn-primary navbar-btn">
+					<i class="fa fa-sign-out"></i> Logout
+				</button>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a th:href="@{/person/all}" class="btn btn-success"><i
+					class="fa fa-book"></i> Persons</a>
+			</div>
+			<form th:action="@{/user/add}" th:object="${user}" method="POST">
+				<div class="panel-body">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>First Name</label> <input type="text"
+								th:field="*{person.firstName}" class="form-control" /> <span
+								th:errors="*{person.firstName}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Last Name</label> <input type="text"
+								th:field="*{person.lastName}" class="form-control" /> <span
+								th:errors="*{person.lastName}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>E-mail</label> <input type="text"
+								th:field="*{person.email}" class="form-control" /> <span
+								th:errors="*{person.email}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Phone Number</label> <input type="text"
+								th:field="*{person.phone}" class="form-control" /> <span
+								th:errors="*{person.phone}" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>User Role</label> <select class="form-control"
+								th:field="*{role}">
+								<option value="">CHOOSE</option>
+								<option value="ADMINISTRATOR">ADMINISTRATOR</option>
+								<option value="EMPLOYEE">EMPLOYEE</option>
+								<option value="CUSTOMER">CUSTOMER</option>
+							</select> <span th:errors="*{role}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>User Name</label> <input type="text"
+								th:field="*{username}" class="form-control" /> <span
+								th:errors="*{username}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Password</label> <input type="password"
+								th:field="*{password}" class="form-control" /> <span
+								th:errors="*{password}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Confirm Password</label> <input type="password"
+								class="form-control" />
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label>Zip</label> <input type="text"
+								th:field="*{person.address.zipcode}" class="form-control" /> <span
+								th:errors="*{person.address.zipcode}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>City</label> <input type="text"
+								th:field="*{person.address.city}" class="form-control" /> <span
+								th:errors="*{person.address.city}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>State</label> <input type="text"
+								th:field="*{person.address.state}" class="form-control" /> <span
+								th:errors="*{person.address.state}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Country</label> <input type="text"
+								th:field="*{person.address.country}" class="form-control" /> <span
+								th:errors="*{person.address.country}" class="text-danger"></span>
+						</div>
+					</div>
+				</div>
+				<div class="panel-footer text-center">
+					<button class="btn btn-success">
+						<i class="fa fa-save"></i> Save Information
+					</button>
+				</div>
+				<div class="panel-footer">
+					<i class="fa fa-info"></i> Person registration Form
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>
