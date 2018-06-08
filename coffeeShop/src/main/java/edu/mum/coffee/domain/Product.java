@@ -5,6 +5,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Product {
@@ -12,22 +16,29 @@ public class Product {
 	@Id
 	@GeneratedValue
 	private int id;
+	@NotEmpty
 	private String productName;
+	@NotEmpty
 	private String description;
+	@Min(value = 1)
+	@NotNull
 	private double price;
+	@NotNull
 	@Enumerated(EnumType.STRING)
 	private ProductType productType;
+	private boolean enabled;
 
 	public Product() {
 		super(); // default constructor
 	}
 
-	public Product(String productName, String description, double price, ProductType productType) {
+	public Product(String productName, String description, double price, ProductType productType, boolean enabled) {
 		super();
 		this.productName = productName;
 		this.description = description;
 		this.price = price;
 		this.productType = productType;
+		this.enabled = enabled;
 	}
 
 	public ProductType getProductType() {
@@ -62,8 +73,24 @@ public class Product {
 		this.price = price;
 	}
 
+	public String getPriceToString() {
+		return "$" + price;
+	}
+
 	public int getId() {
 		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public boolean isEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 
 }

@@ -28,6 +28,10 @@ public class PersonService {
 		return personRepository.findOne(id);
 	}
 
+	public List<Person>findAll(){
+		return personRepository.findAll();
+	}
+	
 	public void removePerson(Person person) {
 		personRepository.delete(person);
 	}

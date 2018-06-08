@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Coffee Shop</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#"><img th:src="@{/img/iconShop.png}" width="200px"
+						height="50px" /></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a th:href="@{/product/all}">Products</a></li>
+					<li><a href="#">Orders</a></li>
+					<li><a th:href="@{/person/all}">Persons</a></li>
+
+				</ul>
+				<button class="btn btn-primary navbar-btn">
+					<i class="fa fa-sign-out"></i> Logout
+				</button>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a th:href="@{/product/all}" class="btn btn-success"><i
+					class="fa fa-book"></i> Products</a>
+			</div>
+			<form th:action="@{/product/add}" th:object="${product}"
+				method="POST">
+				<input type="hidden" th:field="*{id}"/>
+				<input type="hidden" th:field="*{enabled}"/>
+				<div class="panel-body">
+					<div class="col-md-1"></div>
+					<div class="col-md-5">
+						<div class="form-group">
+							<label>Product Name</label> <input type="text"
+								th:field="*{productName}" class="form-control" /> <span
+								th:errors="*{productName}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Product Price ($)</label> <input type="text"
+								th:field="*{price}" class="form-control" /> <span
+								th:errors="*{price}" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label>Product Type</label> <select class="form-control"
+								th:field="*{productType}">
+								<option value="">CHOOSE</option>
+								<option value="BREAKFAST">BREAKFAST</option>
+								<option value="LUNCH">LUNCH</option>
+								<option value="DINNER">DINNER</option>
+							</select> <span th:errors="*{productType}" class="text-danger"></span>
+						</div>
+					</div>
+					<div class="col-md-5">
+						<div class="form-group">
+							<label>Product Description</label>
+							<textarea rows="3" style="height:180px" th:field="*{description}"
+								class="form-control"></textarea>
+							<span th:errors="*{description}" class="text-danger"></span>
+						</div>
+					</div>
+
+					<div class="col-md-1"></div>
+				</div>
+				<div class="panel-footer text-center">
+					<a th:if="${product.enabled}"
+							th:href="@{'/product/changestatus/'+${product.id}}"
+							class="btn btn-danger"><i class="fa fa-trash"></i> Remove From Menu</a> <a
+							th:if="${NOT product.enabled}"
+							th:href="@{'/product/changestatus/'+${product.id}}"
+							class="btn btn-primary"><i class="fa fa-plus"></i> Add To Menu</a>
+					<button class="btn btn-success">
+						<i class="fa fa-save"></i> Edit Information
+					</button>
+				</div>
+				<div class="panel-footer">
+					<i class="fa fa-info"></i> Product registration Form
+				</div>
+			</form>
+		</div>
+	</div>
+</body>
+</html>

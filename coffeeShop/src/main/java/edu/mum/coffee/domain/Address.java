@@ -37,14 +37,19 @@ public class Address {
 
 	public void setCountry(String country) {
 		this.country = country;
-	}
+	} 
 
 	public String getZipcode() {
-		return zipcode;
+		return zipcode;  
 	}
 
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
-
+ 
+	@Override
+	public String toString() {
+		return zipcode+ " - "+ city+ " / "+ state +" / "+country;
+	}
+ 
 }

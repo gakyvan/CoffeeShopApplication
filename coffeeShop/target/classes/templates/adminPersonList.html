@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Coffee Shop</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#"><img th:src="@{/img/iconShop.png}" width="200px"
+						height="50px" style="margin-right: 15px" /></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a th:href="@{/product/all}">Products</a></li>
+					<li><a href="#">Orders</a></li>
+					<li><a th:href="@{/person/all}">Persons</a></li>
+
+				</ul>
+				<button class="btn btn-primary navbar-btn">
+					<i class="fa fa-sign-out"></i> Logout
+				</button>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a th:href="@{/person/addPersonForm}" class="btn btn-success"><i
+					class="fa fa-plus"></i> Person</a>
+			</div>
+			<div class="panel-body">
+				<table class="table">
+					<tr>
+						<th>#No</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Phone Number</th>
+						<th>Email Address</th>
+						<th>Address</th>
+						<th>Action</th>
+					</tr>
+					<tr th:each="person:${persons}">
+						<td th:text="${person.id}"></td>
+						<td th:text="${person.firstName}"></td>
+						<td th:text="${person.lastName}"></td>
+						<td th:text="${person.phone}"></td>
+						<td th:text="${person.email}"></td>
+						<td th:text="${person.address}"></td>
+						<td><a th:if="${person.enable}"
+							th:href="@{'/person/changestatus/'+${person.id}}"
+							class="btn btn-danger"><i class="fa fa-lock"></i></a> <a
+							th:if="${NOT person.enable}"
+							th:href="@{'/person/changestatus/'+${person.id}}"
+							class="btn btn-success"><i class="fa fa-unlock"></i></a></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
