@@ -22,8 +22,8 @@
 					<li><a th:href="@{/user/userDetails}">Profile</a></li>
 
 				</ul>
-				<a th:href="@{/logout}" class="btn btn-primary navbar-btn">
-					<i class="fa fa-sign-out"></i> Logout
+				<a th:href="@{/logout}" class="btn btn-primary navbar-btn"> <i
+					class="fa fa-sign-out"></i> Logout
 				</a>
 			</div>
 		</div>
@@ -32,6 +32,12 @@
 				<i class="fa fa-info"></i> MAKE YOUR ORDER
 			</div>
 			<div class="panel-body">
+				<div class="alert alert-success" th:if="${message!=null}"
+					th:text="${message}"></div>
+				<a th:href="@{/order/orderDetails}" class="btn btn-primary"> <i
+					class="fa fa-check"></i> Proceed With Checkout &nbsp; <span
+					class="badge" th:if="${items!=null}" th:text="${items}"></span>
+				</a>
 				<table class="table">
 					<tr>
 						<th>Product Name</th>
@@ -43,8 +49,9 @@
 						<td th:text="${product.productName}"></td>
 						<td th:text="${product.description}"></td>
 						<td th:text="${product.priceToString}"></td>
-						<td><a th:href="@{'/product/find/'+${product.id}}"
-							class="btn btn-primary"><i class="fa fa-plus"></i> Add To Order</a></td>
+						<td><a th:href="@{'/product/productDetails/'+${product.id}}"
+							class="btn btn-default"><i class="fa fa-plus"></i> Add To
+								Order</a></td>
 					</tr>
 				</table>
 			</div>

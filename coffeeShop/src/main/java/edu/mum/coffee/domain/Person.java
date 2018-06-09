@@ -36,7 +36,9 @@ public class Person {
 	@Pattern(regexp = "^\\d{3}-\\d{3}-\\d{4}$")
 	private String phone;
 	private boolean enable;
-
+	@OneToOne(mappedBy="person")
+	private User user;
+	
 	public long getId() {
 		return id;
 	}
@@ -87,6 +89,14 @@ public class Person {
 
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	@Override

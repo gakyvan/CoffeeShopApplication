@@ -29,31 +29,32 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-info"></i> MAKE YOUR ORDER
+				<i class="fa fa-info"></i> Product Details
 			</div>
 			<div class="panel-body">
-				<div class="alert alert-success" th:if="${message!=null}"
-					th:text="${message}"></div>
-				<a th:href="@{/order/orderDetails}" class="btn btn-primary"> <i
-					class="fa fa-check"></i> Proceed With Checkout &nbsp; <span
-					class="badge" th:if="${items!=null}" th:text="${items}"></span>
-				</a>
-				<table class="table">
-					<tr>
-						<th>Product Name</th>
-						<th>Product Description</th>
-						<th>Price</th>
-						<th>Operation</th>
-					</tr>
-					<tr th:each="product:${products}">
-						<td th:text="${product.productName}"></td>
-						<td th:text="${product.description}"></td>
-						<td th:text="${product.priceToString}"></td>
-						<td><a th:href="@{'/product/productDetails/'+${product.id}}"
-							class="btn btn-default"><i class="fa fa-plus"></i> Add To
-								Order</a></td>
-					</tr>
-				</table>
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+					<div class="alert alert-success" th:if="${message!=null}"
+						th:text="${message}"></div>
+					<a th:href="@{/order/validateOrder}" class="btn btn-success"><i class="fa fa-check"></i> Validate
+						order</a>
+					<table class="table">
+						<tr>
+							<th>Product Type</th>
+							<th>Product Name</th>
+							<th>Unity Price</th>
+							<th>Quantity</th>
+							<th>Total Price ($)</th>
+						</tr>
+						<tr th:each="orderLine:${order.orderLines}">
+							<td th:text="${orderLine.product.productType}"></td>
+							<td th:text="${orderLine.product.productName}"></td>
+							<td th:text="${orderLine.product.price}"></td>
+							<td th:text="${orderLine.quantity}"></td>
+							<td th:text="${orderLine.subtotalToString}"></td>
+						</tr>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -47,6 +47,10 @@ public class Orderline {
 	public double getSubtotal() {
 		return quantity * product.getPrice();
 	}
+	
+	public String getSubtotalToString() {
+		return "$"+getSubtotal();
+	}
 
 	public double getPrice() {
 		return product.getPrice();

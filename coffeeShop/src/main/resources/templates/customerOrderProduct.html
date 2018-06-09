@@ -29,31 +29,39 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<i class="fa fa-info"></i> MAKE YOUR ORDER
+				<i class="fa fa-info"></i> Product Details
 			</div>
 			<div class="panel-body">
-				<div class="alert alert-success" th:if="${message!=null}"
-					th:text="${message}"></div>
-				<a th:href="@{/order/orderDetails}" class="btn btn-primary"> <i
-					class="fa fa-check"></i> Proceed With Checkout &nbsp; <span
-					class="badge" th:if="${items!=null}" th:text="${items}"></span>
-				</a>
-				<table class="table">
-					<tr>
-						<th>Product Name</th>
-						<th>Product Description</th>
-						<th>Price</th>
-						<th>Operation</th>
-					</tr>
-					<tr th:each="product:${products}">
-						<td th:text="${product.productName}"></td>
-						<td th:text="${product.description}"></td>
-						<td th:text="${product.priceToString}"></td>
-						<td><a th:href="@{'/product/productDetails/'+${product.id}}"
-							class="btn btn-default"><i class="fa fa-plus"></i> Add To
-								Order</a></td>
-					</tr>
-				</table>
+				<div class="col-md-3"></div>
+				<div class="col-md-6">
+					<form th:action="@{/order/addOrderline}" th:object="${orderline}"
+						method="POST">
+						<input type="hidden" th:field="*{product.id}"/>
+						<input type="hidden" th:field="*{product.productName}"/>
+						<input type="hidden" th:field="*{product.price}"/>
+						<input type="hidden" th:field="*{product.productType}"/>
+						<input type="hidden" th:field="*{product.description}"/>
+						<table class="table">
+							<tr>
+								<th colspan="2" th:text="*{product.productName}"></th>
+							</tr>
+							<tr>
+								<td th:text="*{product.priceToString}"></td>
+								<td th:text="*{product.productType}"></td>
+							</tr>
+							<tr>
+								<td colspan="2" th:text="*{product.description}"></td>
+							</tr>
+							<tr>
+								<td><input type="number" th:field="*{quantity}"
+									class="form-control" /></td>
+								<th><button class="btn btn-primary">
+										<i class="fa fa-check"></i> Place Order
+									</button></th>
+							</tr>
+						</table>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
