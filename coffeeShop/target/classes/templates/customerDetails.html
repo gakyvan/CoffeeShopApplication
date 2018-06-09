@@ -13,13 +13,13 @@
 			<div class="container">
 				<div class="navbar-header">
 					<a href="#"><img th:src="@{/img/iconShop.png}" width="200px"
-						height="50px" /></a>
+						height="50px" style="margin-right: 15px" /></a>
 				</div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a th:href="@{/product/all}">Products</a></li>
+					<li><a th:href="@{/product/menu}">Products</a></li>
 					<li><a href="#">Orders</a></li>
-					<li><a th:href="@{/person/all}">Persons</a></li>
+					<li><a th:href="@{/user/userDetails}">Profile</a></li>
 
 				</ul>
 				<a th:href="@{/logout}" class="btn btn-primary navbar-btn">
@@ -29,11 +29,12 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<a th:href="@{/person/all}" class="btn btn-success"><i
-					class="fa fa-book"></i> Persons</a>
+				<i class="fa fa-user"></i> Your Profile
 			</div>
-			<form th:action="@{/user/add}" th:object="${user}" method="POST">
+			<form th:action="@{/user/edit}" th:object="${user}" method="POST">
+				<input type="hidden" th:field="*{id}"/>
 				<div class="panel-body">
+				<div class="alert alert-success" th:if="${message!=null}" th:text="${message}"></div>
 					<div class="col-md-4">
 						<div class="form-group">
 							<label>First Name</label> <input type="text"
@@ -58,16 +59,11 @@
 					</div>
 					<div class="col-md-4">
 						<div class="form-group">
-							<label>User Role</label> <select class="form-control"
-								th:field="*{role}">
-								<option value="">CHOOSE</option>
-								<option value="ADMINISTRATOR">ADMINISTRATOR</option>
-								<option value="EMPLOYEE">EMPLOYEE</option>
-								<option value="CUSTOMER">CUSTOMER</option>
-							</select> <span th:errors="*{role}" class="text-danger"></span>
+							<label>User Role</label> 
+							<input type="text" readonly="readonly" class="form-control" th:field="*{role}"/>
 						</div>
 						<div class="form-group">
-							<label>User Name</label> <input type="text"
+							<label>User Name</label> <input type="text" readonly="readonly"
 								th:field="*{username}" class="form-control" /> <span
 								th:errors="*{username}" class="text-danger"></span>
 						</div>
@@ -106,7 +102,7 @@
 				</div>
 				<div class="panel-footer text-center">
 					<button class="btn btn-success">
-						<i class="fa fa-save"></i> Save Information
+						<i class="fa fa-edit"></i> Edit Profile
 					</button>
 				</div>
 				<div class="panel-footer">

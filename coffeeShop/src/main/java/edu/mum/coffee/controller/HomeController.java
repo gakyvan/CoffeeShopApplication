@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class HomeController {
 	
-	@GetMapping({"/", "/index", "/home"})
+	@GetMapping({"/", "/index", "/signin"})
 	public String homePage() {
-		return "home";
+		return "index";
 	}
-
+ 
 	@GetMapping({"/secure"})
 	public String securePage() {
 		return "secure";

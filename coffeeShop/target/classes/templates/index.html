@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1" />
+<title>Coffee Shop</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.css}" />
+<link rel="stylesheet" type="text/css"
+	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+<body>
+	<div class="container">
+		<div class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<a href="#"><img th:src="@{/img/iconShop.png}" width="200px"
+						height="50px" style="margin-right: 15px" /></a>
+				</div>
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+					<li><a th:href="@{/signin}"><i
+							class="fa fa-sign-out"></i> Sign in</a></li>
+
+				</ul>
+				<a th:href="@{/user/userSignUpForm}" class="btn btn-primary navbar-btn"> 
+					<i class="fa fa-sign-out"></i>Sign up
+				</a>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">WELCOME TO NEO COFFEE SHOP</div>
+			<div class="panel-body">
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+					<form th:action="@{/authenticateTheUser}" method="POST">
+						<div class="form-group">
+							<label>User Name</label> <input type="text" class="form-control"
+								name="username" />
+						</div>
+						<div class="form-group">
+							<label>Password</label> <input type="password" class="form-control"
+								name="password" />
+						</div>
+						<button class="btn btn-success">
+							<i class="fa fa-sign-in"></i> Sign In
+						</button>
+					</form>
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			<div class="panel-footer text-center"></div>
+			<div class="panel-footer">
+				<i class="fa fa-info"></i> Product registration Form
+			</div>
+		</div>
+	</div>
+</body>
+</html>

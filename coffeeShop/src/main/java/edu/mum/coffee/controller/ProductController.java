@@ -76,6 +76,12 @@ public class ProductController {
 		return "adminProductsList";
 	}
 	
+	@RequestMapping(value="/menu", method=RequestMethod.GET)
+	public String getAllList(Model model) {
+		model.addAttribute("products", productService.getAllProduct());
+		return "customerProductsList";
+	}
+	
 	public ProductService getProductService() {
 		return productService;
 	}

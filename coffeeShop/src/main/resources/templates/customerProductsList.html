@@ -17,9 +17,9 @@
 				</div>
 				<ul class="nav navbar-nav">
 					<li class="active"><a href="#">Home</a></li>
-					<li><a th:href="@{/product/all}">Products</a></li>
+					<li><a th:href="@{/product/menu}">Products</a></li>
 					<li><a href="#">Orders</a></li>
-					<li><a th:href="@{/person/all}">Persons</a></li>
+					<li><a th:href="@{/user/userDetails}">Profile</a></li>
 
 				</ul>
 				<a th:href="@{/logout}" class="btn btn-primary navbar-btn">
@@ -29,33 +29,22 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<a th:href="@{/product/add}" class="btn btn-success"><i
-					class="fa fa-plus"></i> Product</a>
+				<i class="fa fa-info"></i> MAKE YOUR ORDER
 			</div>
 			<div class="panel-body">
-				<div class="alert alert-success" th:if="${message!=null}" th:text="${message}"></div>
 				<table class="table">
 					<tr>
-						<th>#No</th>
 						<th>Product Name</th>
 						<th>Product Description</th>
-						<th>Product Type</th>
 						<th>Price</th>
-						<th>status</th>
 						<th>Operation</th>
 					</tr>
 					<tr th:each="product:${products}">
-						<td th:text="${product.id}"></td>
 						<td th:text="${product.productName}"></td>
 						<td th:text="${product.description}"></td>
-						<td th:text="${product.productType}"></td>
 						<td th:text="${product.priceToString}"></td>
-						<td>
-							<span th:if="${product.enabled}" class="btn btn-success"></span>
-							<span th:if="${NOT product.enabled}" class="btn btn-danger"></span>
-						</td>
 						<td><a th:href="@{'/product/find/'+${product.id}}"
-							class="btn btn-primary"><i class="fa fa-edit"></i> Edit Info</a></td>
+							class="btn btn-primary"><i class="fa fa-plus"></i> Add To Order</a></td>
 					</tr>
 				</table>
 			</div>
