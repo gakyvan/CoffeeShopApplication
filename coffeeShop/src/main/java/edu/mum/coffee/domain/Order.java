@@ -71,6 +71,10 @@ public class Order {
 		}
 		return totalAmount;
 	}
+	
+	public String getTotalAmountToString() {
+		return "$"+getTotalAmount();
+	}
 
 	public void addOrderLine(Orderline orderLine) {
 		orderLine.setOrder(this);

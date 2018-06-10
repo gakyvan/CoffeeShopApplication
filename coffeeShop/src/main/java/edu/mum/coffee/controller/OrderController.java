@@ -1,6 +1,7 @@
 package edu.mum.coffee.controller;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,7 +23,6 @@ import edu.mum.coffee.service.PersonService;
 @Controller
 @RequestMapping("/order")
 public class OrderController {
-
 	@Autowired
 	private OrderService orderService;
 
@@ -44,6 +44,20 @@ public class OrderController {
 		return "redirect:/product/menu";
 	}
 
+	@RequestMapping(value="/all", method=RequestMethod.GET)
+	public String getOrdersList(Model model) {
+		model.addAttribute("orders", orderService.findAll());
+		return "adminOrdersList";
+	}
+	
+	@RequestMapping(value="/myorders", method=RequestMethod.GET)
+	public String getCustomerOrdersList(Model model) {
+		Person person=personService.findById(new Long(2));
+		List<Order>orders=orderService.findByPerson(person);
+		model.addAttribute("orders", orders);
+		return "customerOrdersList";
+	}
+	
 	@RequestMapping(value = "/orderDetails")
 	public String checkOrder(HttpSession session, Model model) {
 		Object orderObj = session.getAttribute("orderCart");

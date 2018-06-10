@@ -29,34 +29,25 @@
 		</div>
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<a th:href="@{/user/add}" class="btn btn-success"><i
-					class="fa fa-plus"></i> Person</a>
+				<i class="fa fa-book"></i> List of Orders
 			</div>
 			<div class="panel-body">
-			<div class="alert alert-success" th:if="${message!=null}" th:text="${message}"></div>
 				<table class="table">
 					<tr>
 						<th>#No</th>
-						<th>First Name</th>
-						<th>Last Name</th>
-						<th>Phone Number</th>
-						<th>Email Address</th>
-						<th>Address</th>
-						<th>Action</th>
+						<th>Customer First Name</th>
+						<th>Customer Last Name</th>
+						<th>Date</th>
+						<th>Quantity</th>
+						<th>Total Price</th>
 					</tr>
-					<tr th:each="person:${persons}">
-						<td th:text="${person.id}"></td>
-						<td th:text="${person.firstName}"></td>
-						<td th:text="${person.lastName}"></td>
-						<td th:text="${person.phone}"></td>
-						<td th:text="${person.email}"></td>
-						<td th:text="${person.address}"></td>
-						<td><a th:if="${person.enable}"
-							th:href="@{'/person/changestatus/'+${person.id}}"
-							class="btn btn-danger"><i class="fa fa-lock"></i></a> <a
-							th:if="${NOT person.enable}"
-							th:href="@{'/person/changestatus/'+${person.id}}"
-							class="btn btn-success"><i class="fa fa-unlock"></i></a></td>
+					<tr th:each="order:${orders}">
+						<td th:text="${order.id}"></td>
+						<td th:text="${order.person.firstName}" ></td>
+						<td th:text="${order.person.lastName}" ></td>
+						<td th:text="${order.orderDate}"></td>
+						<td th:text="${order.quantity}"></td>
+						<td th:text="${order.totalAmountToString}"></td>
 					</tr>
 				</table>
 			</div>
