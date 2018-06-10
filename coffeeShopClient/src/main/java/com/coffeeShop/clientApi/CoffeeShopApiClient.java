@@ -8,8 +8,9 @@ public class CoffeeShopApiClient {
 
 	public void getProduct() {
 		RestTemplate restTemplate=new RestTemplate();
-		Product product=restTemplate.getForObject("http://localhost:8080/api/product/1", Product.class);
-		printData(product);
+		String s=restTemplate.getForObject("http://localhost:8080/api/product/1", String.class);
+		System.out.println(s);
+		//printData(product);
 	}
 	
 	public void printData(Product product) {
