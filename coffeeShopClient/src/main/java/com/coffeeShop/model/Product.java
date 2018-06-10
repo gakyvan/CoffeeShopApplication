@@ -74,4 +74,10 @@ public class Product {
 		this.enabled = enabled;
 	}
 
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", productName=" + productName + ", description=" + description + ", price="
+				+ price + ", productType=" + productType + ", enabled=" + enabled + "]";
+	}
+
 }
