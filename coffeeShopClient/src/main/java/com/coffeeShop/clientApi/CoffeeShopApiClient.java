@@ -6,14 +6,10 @@ import com.coffeeShop.model.Product;
 
 public class CoffeeShopApiClient {
 
-	public void getProduct() {
+	public Product getProduct(String productID) {
 		RestTemplate restTemplate=new RestTemplate();
-		String s=restTemplate.getForObject("http://localhost:8080/api/product/1", String.class);
-		System.out.println(s);
-		//printData(product);
+		Product product=restTemplate.getForObject("http://localhost:8080/api/product/"+productID, Product.class);
+		return product;
 	}
 	
-	public void printData(Product product) {
-		System.out.println(product);
-	}
 }
